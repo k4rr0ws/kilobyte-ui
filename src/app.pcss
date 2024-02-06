@@ -1,0 +1,33 @@
+/* Write your global styles here, in PostCSS syntax */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-image: url('/background.jpg');
+    background-size:cover;
+    background-repeat: none;
+    font-family: 'Press Start 2P';
+    padding-top: 12px;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        padding-top: 0px;
+    }
+  }
+
+.wood {
+    background-color: #cc8800;
+    background-image: url("/wood-pattern.png");
+}
+
+.barn {
+    background-color: #de6000;
+    background-image: url("/wood-pattern.png");
+}
+
+.lighter {
+    background-color: #f7954a;
+    background-image: url("/wood-pattern.png");
+}
