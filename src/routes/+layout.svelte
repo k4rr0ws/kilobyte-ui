@@ -18,6 +18,8 @@
 
     // =========== ASSETS =========== //
     import KILOBYTE_LOGO from "$lib/assets/kilobyte-logo.png";
+    import TELEGRAM_ICON from '$lib/assets/telegram_icon.png';
+    import TWITTER_ICON from '$lib/assets/twitter-x_icon.png';
     import "../app.pcss";
 
     //=========== CONFIG ============= //
@@ -87,3 +89,9 @@
     </div>
 </div>
 </div>
+<footer class="p-4 text-center mb-8">
+    <div class="mx-auto">
+        <a href="https://t.me/KILOBYTEfarm" target="_blank"><img src={TELEGRAM_ICON} class="w-16 mx-auto inline" alt="Join telegram" /></a>
+        <a href="https://twitter.com/KILOBYTEonPulse" target="_blank"><img src={TWITTER_ICON} class="w-16 mx-auto inline" alt="Follow on twitter" /></a>
+    </div>
+</footer>
