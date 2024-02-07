@@ -1,6 +1,6 @@
 <script>
     // ============ CORE ============== //
-    import { onMount } from 'svelte';
+    import { onMount, createEventDispatcher } from 'svelte';
     import { browser } from '$app/environment';
     import { formatEther, parseEther, isAddress } from 'viem';
     import { waitForTransaction, fetchBalance } from '@wagmi/core';
@@ -32,6 +32,8 @@
     export let info;
 
     // ========== VARIABLES ========= //
+    const dispatch = createEventDispatcher();
+
     let depositOpen = false;
     let withdrawOpen = false;
     let farmOpen = false;
@@ -47,6 +49,7 @@
     let allowance;
     let rewards;
     let depositAmount;
+    let sentTVL = false;
     let withdrawAmount;
     let referee = ZERO_ADDRESS;
     let showDetails = false;
@@ -225,6 +228,13 @@
             tvl = formatEther(stakingTokenPrice) * formatEther(totalStaked);
             tvlUSD = tvl * WPLS_USD;
             apr = (yearRewardsInWavax / tvl) * 100;
+        }
+
+        if (tvlUSD && !sentTVL) {
+            dispatch('addToTVL', {
+                amount: tvlUSD
+            });
+            sentTVL = true;
         }
 
         if ($connected) {
