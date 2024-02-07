@@ -262,7 +262,7 @@
 
             //fetch pending rewards
             rewards = await masterChef.pendingRewards(info.poolId, $signerAddress);
-            rewardsAsUSD = formatEther(rewards) * WPLS_USD;
+            rewardsAsUSD = (formatEther(farmTokenPrice) * formatEther(rewards)) * WPLS_USD;
             
 
             if(info.type == Types.Farm) {
