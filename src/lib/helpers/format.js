@@ -36,6 +36,15 @@ export const usd = (value) => {
     return freedomUnits.format(value);
 }
 
+export const price = (value) => {
+    const format = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 3
+    });
+    return format.format(value);
+}
+
 export const tvl = (value) => {
     if (typeof value !== 'bigint') {
         return 0;
@@ -47,4 +56,5 @@ export const tvl = (value) => {
 const freedomUnits = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
+    minimumFractionDigits: 2
 });

@@ -59,7 +59,7 @@
 <div class="text-white my-8 text-center grid grid-cols-1 md:grid-cols-2 gap-2">
     {#if farmTokenUSD}
     <div class="border-black border-4">
-        <div class="border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white bg-blue-900 w-full mx-auto p-4">$KB <div>{format.usd(farmTokenUSD)}</div></div>
+        <div class="border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white bg-blue-900 w-full mx-auto p-4">$KB <div>{format.price(farmTokenUSD)}</div></div>
     </div>
     {/if}
     {#if totalTVL}
