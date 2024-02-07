@@ -89,6 +89,7 @@
     </div>
 </div>
 </div>
+
 <footer class="p-4 text-center mb-8">
     <div class="mx-auto">
         <a href="https://t.me/KILOBYTEfarm" target="_blank"><img src={TELEGRAM_ICON} class="w-16 mx-auto inline" alt="Join telegram" /></a>
