@@ -41,7 +41,7 @@
         const erckit = defaultConfig({
             autoConnect: true,
             appName: 'erc.kit',
-            walletConnectProjectId: 'd5891ecfc77771a9aafe21b38f45711d',
+            walletConnectProjectId: '80fd36293beb23adfccb7beba44ad5e2',
             chains: [pulsechain]
         });
         
