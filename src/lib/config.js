@@ -78,6 +78,22 @@ export let farms = [
         oracle: Oracles.DEXTOP
     },
     {
+        orderById: 2,
+        displayName: 'DEX/PLS',
+        lpAbbreviation: 'LP',
+        poolId: 4,
+        stakingToken: '0x635969e2c12aB4938f9B31BF69aCA724DF1F2c42',
+        liquidityLink: 'https://dex.dextop.pro/add/',
+        depositFee: 0,
+        withdrawFee: 0,
+        poolWeight: 5,
+        isActive: true,
+        compound: false,
+        zaps: false,
+        type: Types.Farm,
+        oracle: Oracles.DEXTOP
+    },
+    {
         orderById: 3,
         displayName: 'DAI/PLS',
         lpAbbreviation: 'LP',
