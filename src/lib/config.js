@@ -4,9 +4,9 @@ export const DAPP_TITLE = "KILOBYTE.FARM";
 
 export const networkChainId = 369;
 
-export const MASTERCHEF_ADDRESS = "0x6475D500F3580be42037Fe3CcB8b6159Ef881Ae9";
+export const MASTERCHEF_ADDRESS = "0x24321b16e1AF2FEC2EA8543091257BcbB5873BC7";
 export const NATIVE_TOKEN_ADDRESS = "0xA1077a294dDE1B09bB078844df40758a5D0f9a27"; //WPLS
-export const FARM_TOKEN_ADDRESS = "0xEDe5E944F4377F577A72Aeca96a211ca83A871A9"; //KB
+export const FARM_TOKEN_ADDRESS = "0xaC55cd59F4d97c50FBeC9b0812352e15BC5d2e59"; //KB
 export const STABLECOIN_ADDRESS = "0xefD766cCb38EaF1dfd701853BFCe31359239F305"; //DAI
 export const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 export const ZAPPER_ADDRESS = "0xb1392e2928C797B20b784ac90EA4d630D53Fd21d";
@@ -50,8 +50,8 @@ export let farms = [
         displayName: 'KB/PLS',
         lpAbbreviation: 'LP',
         poolId: 0,
-        stakingToken: '0x4c8888953E8f725C687fF243fAf006F2c62b4662',
-        liquidityLink: 'https://traderjoexyz.com/avalanche/pool/v1/AVAX/0xbab810c2b01f7ce8f73f591a107314b18a2da8d7',
+        stakingToken: '0x4db7c5A1DA37f1681459D247aD353C8b4D1F64b7',
+        liquidityLink: 'https://dex.dextop.pro/add/',
         depositFee: 0,
         withdrawFee: 0,
         poolWeight: 25,
@@ -62,19 +62,51 @@ export let farms = [
         oracle: Oracles.DEXTOP
     },
     {
-        orderById: 1,
-        displayName: 'KB',
-        lpAbbreviation: '',
+        orderById: 2,
+        displayName: 'KB/DEX',
+        lpAbbreviation: 'LP',
         poolId: 1,
-        stakingToken: '0xEDe5E944F4377F577A72Aeca96a211ca83A871A9',
-        liquidityLink: 'https://traderjoexyz.com/avalanche/pool/v1/AVAX/0xbab810c2b01f7ce8f73f591a107314b18a2da8d7',
-        depositFee: 1,
-        withdrawFee: 1,
-        poolWeight: 5,
+        stakingToken: '0x1c69F07efb55281EcA5490b1D7412486048547Fc',
+        liquidityLink: 'https://dex.dextop.pro/add/',
+        depositFee: 0,
+        withdrawFee: 0,
+        poolWeight: 10,
         isActive: true,
         compound: false,
         zaps: false,
-        type: Types.Pool,
+        type: Types.Farm,
+        oracle: Oracles.DEXTOP
+    },
+    {
+        orderById: 3,
+        displayName: 'DAI/PLS',
+        lpAbbreviation: 'LP',
+        poolId: 2,
+        stakingToken: '0xBDEb3316d6E09BB85ac4290ed193fe1AF59c1328',
+        liquidityLink: 'https://dex.dextop.pro/add/',
+        depositFee: 1,
+        withdrawFee: 1,
+        poolWeight: 1,
+        isActive: true,
+        compound: false,
+        zaps: false,
+        type: Types.Farm,
+        oracle: Oracles.DEXTOP
+    },
+    {
+        orderById: 4,
+        displayName: 'PLSX/PLS',
+        lpAbbreviation: 'LP',
+        poolId: 3,
+        stakingToken: '0xEa1457a682eBB5471E75F83f5348743DF918A6c3',
+        liquidityLink: 'https://dex.dextop.pro/add/',
+        depositFee: 1,
+        withdrawFee: 1,
+        poolWeight: 1,
+        isActive: true,
+        compound: false,
+        zaps: false,
+        type: Types.Farm,
         oracle: Oracles.DEXTOP
     }
 ]

@@ -64,10 +64,10 @@
             <a href="/" class="block border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white">Farms</a>
         </div>
         <div class="border-2 border-black bg-yellow-500 w-full md:w-44">
-            <a href="/" class="block border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white">Buy</a>
+            <a href="https://dex.dextop.pro/swap/?outputCurrency=0xaC55cd59F4d97c50FBeC9b0812352e15BC5d2e59" class="block border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white">Buy</a>
         </div>
         <div class="border-2 border-black bg-yellow-500 w-full md:w-44">
-            <a href="/" class="block border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white">Chart</a>
+            <a href="https://www.dextools.io/app/en/pulse/pair-explorer/0x4db7c5a1da37f1681459d247ad353c8b4d1f64b7?t=1707266075949" class="block border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white">Chart</a>
         </div>
         <div class="border-2 border-black bg-yellow-500 w-full md:w-44">
             {#if !$connected}
@@ -78,7 +78,7 @@
         </div>
     </div>
     <div class="mt-8">
-        {#if $chainId !== networkChainId}
+        {#if $chainId !== networkChainId && $connected}
             <div class="mx-auto p-2 bg-red-500 my-6 text-center max-w-2xl text-white border-4 border-red-900">
                 You're not connected to the right network, switch to PulseChain
             </div>
