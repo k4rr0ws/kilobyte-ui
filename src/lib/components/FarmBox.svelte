@@ -472,8 +472,8 @@
                     <button on:click={setMaxDeposit} class="hover:font-bold">[Max]</button>
                 </div>
                 <div>
-                    {#if depositType == DepositTypes.AVAX}
-                        {format.wei(wavaxBalance)} AVAX
+                    {#if depositType == DepositTypes.PLS}
+                        {format.wei(wavaxBalance)} PLS
                     {:else}
                         {format.wei(balance)} {info.displayName}
                     {/if}
@@ -483,7 +483,7 @@
                 <div class="border-2 border-[#28282a]">
                     <input bind:value={depositAmount} type="text" class="bg-yellow-500 w-full p-2 border-b-2 w-full border-r-2 border-black placeholder-white focus:outline-none text-white text-xs" />
                 </div>
-                {#if allowance > 0 || depositType==DepositTypes.AVAX}
+                {#if allowance > 0 || depositType==DepositTypes.PLS}
                 <div class="border-2 border-black bg-yellow-500">
                     <button 
                         on:click={deposit}

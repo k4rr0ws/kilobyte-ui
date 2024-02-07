@@ -9,7 +9,7 @@ export const NATIVE_TOKEN_ADDRESS = "0xA1077a294dDE1B09bB078844df40758a5D0f9a27"
 export const FARM_TOKEN_ADDRESS = "0xaC55cd59F4d97c50FBeC9b0812352e15BC5d2e59"; //KB
 export const STABLECOIN_ADDRESS = "0xefD766cCb38EaF1dfd701853BFCe31359239F305"; //DAI
 export const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
-export const ZAPPER_ADDRESS = "0xb1392e2928C797B20b784ac90EA4d630D53Fd21d";
+export const ZAPPER_ADDRESS = "0xe8ce638E1b97CaBF029B8D6dff8744a0A8275FeB";
 
 //PulseX V1
 export let PULSEX_V1_FACTORY_ADDRESS = "0x1715a3E4A142d8b698131108995174F37aEBA10D";
@@ -40,7 +40,7 @@ export const Types = {
 
 export const DepositTypes = {
     TOKEN: 0,
-    AVAX: 1
+    PLS: 1
 }
 
 
@@ -119,6 +119,22 @@ export let farms = [
         depositFee: 1,
         withdrawFee: 1,
         poolWeight: 1,
+        isActive: true,
+        compound: false,
+        zaps: false,
+        type: Types.Farm,
+        oracle: Oracles.DEXTOP
+    },
+    {
+        orderById: 5,
+        displayName: 'IMPLS/PLS',
+        lpAbbreviation: 'LP',
+        poolId: 5,
+        stakingToken: '0x216Ff37198DAF7eb397E412D0d6397DFD3A7Aba3',
+        liquidityLink: 'https://dex.dextop.pro/add/',
+        depositFee: 1,
+        withdrawFee: 1,
+        poolWeight: 3,
         isActive: true,
         compound: false,
         zaps: false,
