@@ -140,5 +140,21 @@ export let farms = [
         zaps: false,
         type: Types.Farm,
         oracle: Oracles.DEXTOP
+    },
+    {
+        orderById: 6,
+        displayName: 'DAI/USDL',
+        lpAbbreviation: 'LP',
+        poolId: 6,
+        stakingToken: '0x6a2eF3dFd599f948aCa99Ef84682556548f98396',
+        liquidityLink: 'https://dex.dextop.pro/add/',
+        depositFee: 1,
+        withdrawFee: 1,
+        poolWeight: 1,
+        isActive: true,
+        compound: false,
+        zaps: false,
+        type: Types.Farm,
+        oracle: Oracles.DEXTOP
     }
 ]
