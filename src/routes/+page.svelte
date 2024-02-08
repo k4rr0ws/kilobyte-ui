@@ -1,6 +1,7 @@
 <script>
     // ========= CORE =========== //
     import { onMount } from 'svelte';
+    import { connected, signerAddress } from 'svelte-wagmi';
 
     // ============ COMPONENTS =========== //
     import FarmBox from '$lib/components/FarmBox.svelte';
@@ -14,9 +15,11 @@
 
     // ========= CONTRACTS =========== //
     import * as erc20 from '$contracts/erc20';
+    import * as masterChef from '$contracts/masterChef';
 
     // =========== UTILS ============== //
     import { parseEther, formatEther } from 'viem';
+    import * as toast from '$stores/toasts';
 
     // ========= VARIABLES ========== //
     let totalTVL = 0;
@@ -26,10 +29,22 @@
     let WPLS_USD;
     let marketCap;
     let marketCapUSD;
+    let pendingTotal;
 
     // ========= EVENTS ============ //
     const addToTVL = (event) => {
         totalTVL += event.detail.amount;
+    }
+
+    const claimAll = async() => {
+        try {
+            const { hash } = await masterChef.claimAll();
+            await waitForTransaction({hash});
+            toast.success('Rewards Claimed!');
+            refreshData();
+        } catch (error) {
+            toast.error('Error Claiming');
+        }
     }
 
     const refreshData = async() => {
@@ -42,6 +57,16 @@
             farmTokenUSD = formatEther(farmTokenWPLS) * WPLS_USD;
         } catch (error) {
             console.log('Error fetching price data');
+        }
+
+        if ($connected) {
+            let poolLength = await masterChef.poolLength();
+            let totalRewards = BigInt(0);
+            for(let i=0;i<poolLength;i++) {
+                let rewards = await masterChef.pendingRewards(i, $signerAddress);
+                totalRewards += rewards;
+            }
+            pendingTotal = totalRewards;
         }
     }
 
@@ -82,4 +107,17 @@
     {#each farms as farm}
         <FarmBox info={farm} on:addToTVL={addToTVL} />
     {/each}
+</div>
+
+<div class="text-center">
+    {#if pendingTotal}
+    <div class="border-2 border-black bg-yellow-500 mt-8">
+        <button 
+            on:click={claimAll}
+            class="border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white w-full"
+        >
+            Claim All ({format.wei(pendingTotal)} $KB)
+        </button>
+    </div>
+    {/if}
 </div>
