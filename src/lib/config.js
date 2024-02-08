@@ -134,7 +134,7 @@ export let farms = [
         liquidityLink: 'https://dex.dextop.pro/add/',
         depositFee: 1,
         withdrawFee: 1,
-        poolWeight: 3,
+        poolWeight: 2,
         isActive: true,
         compound: false,
         zaps: false,
