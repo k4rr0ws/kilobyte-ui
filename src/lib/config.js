@@ -172,5 +172,21 @@ export let farms = [
         zaps: false,
         type: Types.Farm,
         oracle: Oracles.DEXTOP
+    },
+    {
+        orderById: 7,
+        displayName: 'KB',
+        lpAbbreviation: 'KB',
+        poolId: 8,
+        stakingToken: '0xaC55cd59F4d97c50FBeC9b0812352e15BC5d2e59',
+        liquidityLink: 'https://dex.dextop.pro/add/',
+        depositFee: 0,
+        withdrawFee: 0,
+        poolWeight: 1,
+        isActive: true,
+        compound: false,
+        zaps: false,
+        type: Types.Pool,
+        oracle: Oracles.DEXTOP
     }
 ]
