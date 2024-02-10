@@ -5,6 +5,10 @@
     import { formatEther, parseEther, isAddress } from 'viem';
     import { waitForTransaction, fetchBalance } from '@wagmi/core';
 
+    // =========== COMPONENTS =========== //
+    import Tooltip from './Tooltip.svelte';
+    import { tooltip } from '$helpers/tooltip';
+
     // ============ STORES ============ //
     import { connected, signerAddress } from 'svelte-wagmi';
     import * as toast from '$stores/toasts';
@@ -55,6 +59,7 @@
     let referee = ZERO_ADDRESS;
     let showDetails = false;
     let depositType = DepositTypes.TOKEN;
+    let showApr = false;
 
     //check if a referral address is stored and set referee, otherwise set to the address(0)
     if (browser) {
@@ -308,12 +313,21 @@
                 <h3>APR:</h3>
                 <div>
                     {#if apr > 0}
-                        <span>{format.apr(apr)}</span>
+                        <span>{format.apr(apr)}</span> <span class="cursor-pointer" on:click={()=>showApr = !showApr}>{#if showApr}-{:else}+{/if}</span>
                     {:else}
                         <div class="animate-spin">.</div>
                     {/if}
                 </div>
             </div>
+            {#if showApr}
+                    <div class="p-2 mb-4" transition:slide={{ delay: 250, duration: 300, easing: quintOut, axis: 'y' }}>
+                        <ul class="text-xs">
+                            <li>Daily: {format.apr(apr / 365)}</li>
+                            <li>Weekly: {format.apr(apr / 52)}</li>
+                            <li>Yearly: {format.apr(apr)}</li>
+                        </ul>
+                    </div>
+                {/if}
             <div class="flex justify-center items-center">
                 <h3>TVL:</h3>
                 <div>
