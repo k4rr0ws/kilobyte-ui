@@ -168,10 +168,21 @@
     const depositToken = async() => {
         try {
             const depositInWei = parseEther(depositAmount);
-            const { hash } = await masterChef.deposit(info.poolId, depositInWei, ZERO_ADDRESS);
-            await waitForTransaction({hash});
-            toast.success(`Successfully Deposited!`);
-            depositOpen = false;
+            allowance = await erc20.allowance(info.stakingToken, $signerAddress, MASTERCHEF_ADDRESS);
+
+            if (depositInWei > allowance) {
+                toast.info('More allowance required');
+                const { hash } = await erc20.approve(info.stakingToken, MASTERCHEF_ADDRESS, depositInWei);
+                await waitForTransaction({hash});
+                toast.success('Allowance increased!');
+                depositToken();
+            } else {
+                const { hash } = await masterChef.deposit(info.poolId, depositInWei, ZERO_ADDRESS);
+                await waitForTransaction({hash});
+                toast.success(`Successfully Deposited!`);
+                depositOpen = false;
+            }
+            
             refreshData();
         } catch (error) {
             console.log(error);
