@@ -11,7 +11,7 @@
     import { farms } from '$lib/config';
     import * as format from '$helpers/format';
     import * as priceHelper from '$helpers/prices';
-    import { FARM_TOKEN_ADDRESS } from '$lib/config';
+    import { FARM_TOKEN_ADDRESS, DEAD_ADDRESS } from '$lib/config';
 
     // ========= CONTRACTS =========== //
     import * as erc20 from '$contracts/erc20';
@@ -30,6 +30,7 @@
     let marketCap;
     let marketCapUSD;
     let pendingTotal;
+    let burnedTotal;
 
     // ========= EVENTS ============ //
     const addToTVL = (event) => {
@@ -55,6 +56,7 @@
             marketCap = formatEther(totalSupply) * formatEther(farmTokenWPLS);
             marketCapUSD = marketCap * WPLS_USD;
             farmTokenUSD = formatEther(farmTokenWPLS) * WPLS_USD;
+            burnedTotal = await erc20.balanceOf(FARM_TOKEN_ADDRESS, DEAD_ADDRESS);
         } catch (error) {
             console.log('Error fetching price data');
         }
@@ -81,8 +83,8 @@
     });
 </script>
 
-<div class="text-white my-8 text-center grid grid-cols-1 md:grid-cols-2 gap-2">
-    <div class="border-black border-4">
+<div class="text-white my-8 text-center grid grid-cols-1 md:grid-cols-4 gap-2">
+    <div class="col-span-2 border-black border-4">
         <div class="border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white bg-blue-900 w-full mx-auto p-4">$KB 
             <div>
                 {#if farmTokenUSD}
@@ -93,7 +95,7 @@
                 </div>
             </div>
     </div>
-    <div class="border-black border-4">
+    <div class="col-span-2 border-black border-4">
         <div class="border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white bg-blue-900 w-full mx-auto p-4">TVL 
             <div>
                 {#if totalTVL}
@@ -105,7 +107,7 @@
         </div>
     </div>
 
-    <div class="border-black border-4">
+    <div class="col-span-2 border-black border-4">
         <div class="border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white bg-blue-900 w-full mx-auto p-4">Total Supply 
             <div>
                 {#if totalSupply}
@@ -117,11 +119,22 @@
         </div>
     </div>
 
-    <div class="border-black border-4">
+    <div class="col-span-2 border-black border-4">
         <div class="border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white bg-blue-900 w-full mx-auto p-4">Marketcap 
             <div>
                 {#if marketCapUSD}
                 {format.usd(marketCapUSD)}
+                {:else}
+                    <div class="animate-spin">%</div>
+                {/if}
+            </div>
+        </div>
+    </div>
+    <div class="col-span-4 border-black border-4">
+        <div class="border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white bg-blue-900 w-full mx-auto p-4">Burned
+            <div>
+                {#if burnedTotal}
+                {format.wei(burnedTotal)}
                 {:else}
                     <div class="animate-spin">%</div>
                 {/if}
