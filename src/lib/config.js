@@ -140,8 +140,7 @@ export let farms = [
         compound: false,
         zaps: false,
         type: Types.Farm,
-        oracle: Oracles.DEXTOP,
-        decomissioned: true
+        oracle: Oracles.DEXTOP
     },
     {
         orderById: 6,
