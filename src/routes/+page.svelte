@@ -132,13 +132,18 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
     {#each farms as farm}
-        <FarmBox info={farm} on:addToTVL={addToTVL} />
+        {#if !farm.decomissioned}
+            <FarmBox info={farm} on:addToTVL={addToTVL} />
+        {/if}
     {/each}
 </div>
 
-<div class="text-center">
+<div class="text-center mt-8 flex flex-cols space-x-1">
+    <div class="border-2 border-black bg-yellow-500 w-full md:w-64">
+        <a href="/inactive" class="block border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white">Inactive Pools ></a>
+    </div>
     {#if pendingTotal}
-    <div class="border-2 border-black bg-yellow-500 mt-8">
+    <div class="border-2 border-black bg-yellow-500">
         <button 
             on:click={claimAll}
             class="border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white w-full"
