@@ -42,7 +42,7 @@
     let withdrawOpen = false;
     let farmOpen = false;
     let balance;
-    let wavaxBalance;
+    let nativeBalance;
     let apr;
     let staked;
     let stakedUSD;
@@ -224,6 +224,7 @@
         //pool info
         const poolInfo = await masterChef.poolInfo(info.poolId);
         const allocPoints = poolInfo[1];
+    
         const totalStaked = await erc20.balanceOf(info.stakingToken, MASTERCHEF_ADDRESS);
         const totalAllocPoints = await masterChef.totalAllocPoint();
         const rewardPerSec = await masterChef.rewardsPerSec();
@@ -236,7 +237,11 @@
             tvl = await priceHelper.calculatePairValue(info.stakingToken, totalStaked, info.oracle);
             if (typeof tvl == 'bigint') {
                 tvlUSD = formatEther(tvl) * WPLS_USD;
-                apr = (yearRewardsInWavax / formatEther(tvl)) * 100;
+                if (allocPoints > 0) {
+                    apr = (yearRewardsInWavax / formatEther(tvl)) * 100;
+                } else {
+                    apr = 0;
+                }
             }
             
         } else {
@@ -267,9 +272,9 @@
             });
 
             if (userBalance?.value) {
-                wavaxBalance = userBalance.value;
+                nativeBalance = userBalance.value;
             } else {
-                wavaxBalance = 0;
+                nativeBalance = 0;
             }
 
             //staked balance
@@ -325,6 +330,8 @@
                 <div>
                     {#if apr > 0}
                         <span>{format.apr(apr)}</span> <span class="cursor-pointer" on:click={()=>showApr = !showApr}>{#if showApr}-{:else}+{/if}</span>
+                    {:else if apr == 0}
+                        <span>0%</span>
                     {:else}
                         <div class="animate-spin">.</div>
                     {/if}
@@ -498,7 +505,7 @@
                 </div>
                 <div>
                     {#if depositType == DepositTypes.PLS}
-                        {format.wei(wavaxBalance)} PLS
+                        {format.wei(nativeBalance)} PLS
                     {:else}
                         {format.wei(balance)} {info.displayName}
                     {/if}
