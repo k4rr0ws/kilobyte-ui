@@ -1,5 +1,5 @@
 
-export const DAPP_URL = "http://localhost:5173";
+export const DAPP_URL = "http://kilobyte.farm";
 export const DAPP_TITLE = "KILOBYTE.FARM";
 
 export const networkChainId = 369;

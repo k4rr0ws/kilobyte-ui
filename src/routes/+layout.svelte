@@ -69,6 +69,9 @@
             <a href="https://dex.dextop.pro/swap/?outputCurrency=0xaC55cd59F4d97c50FBeC9b0812352e15BC5d2e59" class="block border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white">Buy</a>
         </div>
         <div class="border-2 border-black bg-yellow-500 w-full md:w-44">
+            <a href="https://k4rr0ws.github.io/kilobyte/" class="block border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white">Docs</a>
+        </div>
+        <div class="border-2 border-black bg-yellow-500 w-full md:w-44">
             <a href="https://www.dextools.io/app/en/pulse/pair-explorer/0x4db7c5a1da37f1681459d247ad353c8b4d1f64b7?t=1707266075949" class="block border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white">Chart</a>
         </div>
         <div class="border-2 border-black bg-yellow-500 w-full md:w-44">
