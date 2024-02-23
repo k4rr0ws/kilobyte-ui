@@ -339,10 +339,10 @@
             </div>
             {#if showApr}
                     <div class="p-2 mb-4" transition:slide={{ delay: 250, duration: 300, easing: quintOut, axis: 'y' }}>
-                        <ul class="text-xs">
-                            <li>Daily: {format.apr(apr / 365)}</li>
-                            <li>Weekly: {format.apr(apr / 52)}</li>
-                            <li>Yearly: {format.apr(apr)}</li>
+                        <ul class="text-xs text-center w-full">
+                            <li>Daily: {format.apr(apr / 365)} {#if stakedUSD}<span class="text-green-200" style="font-size: 8px;">({format.usd(((apr / 365) / 100) * stakedUSD)})</span>{/if}</li>
+                            <li>Weekly: {format.apr(apr / 52)} {#if stakedUSD}<span class="text-green-200" style="font-size: 8px;">({format.usd(((apr / 52) / 100) * stakedUSD)})</span>{/if}</li>
+                            <li>Yearly: {format.apr(apr)} {#if stakedUSD}<span class="text-green-200" style="font-size: 8px;">({format.usd((apr / 100) * stakedUSD)})</span>{/if}</li>
                         </ul>
                     </div>
                 {/if}
