@@ -1,44 +1,53 @@
 <script>
-    // ========= CORE ========== //
+    // core
     import { onMount } from 'svelte';
     import { defaultConfig } from 'svelte-wagmi';
     import { connection, connected, chainId, signerAddress, disconnectWagmi, WC } from 'svelte-wagmi';
-    import { avalanche, avalancheFuji, pulsechain } from '@wagmi/core/chains';
+    import { pulsechain } from '@wagmi/core/chains';
 
-    // ========== COMPONENTS ========== //
+    // components
     import Toasts from '$components/Toasts.svelte';
     import * as toast from '$stores/toasts';
 
-    // ========== TRANSITIONS ========= //
+    // transitions
+    import { fade } from 'svelte/transition';
     import { slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 
-    // ============ UTILS ============= //
+    // utilities
     import * as format from '$helpers/format';
 
-    // =========== ASSETS =========== //
+    // assets
     import KILOBYTE_LOGO from "$lib/assets/kilobyte-logo.png";
     import TELEGRAM_ICON from '$lib/assets/telegram_icon.png';
     import TWITTER_ICON from '$lib/assets/twitter-x_icon.png';
     import "../app.pcss";
 
-    //=========== CONFIG ============= //
+    // config
     import { DAPP_TITLE, networkChainId } from '$lib/config';
 
     
-    // ========== FUNCTIONS ======== //
+    // functions
     const walletConnect = async() => {
         await WC('Sign in to the app');
     }
 
-    // ========== STORE EVENTS ============= //
+    const injectedConnector = async() => {
+        await connection();
+    }
+
+    // variables
+    let connectModalOpen = false;
+
+    // store events
     connected.subscribe((connect) => {
         if (connect) {
+            connectModalOpen = false;
             toast.success('Wallet Connected!');
         }
     })
 
-    // =========== MOUNT =========== //
+    // functions
     onMount(async() => {
         const erckit = defaultConfig({
             autoConnect: true,
@@ -76,7 +85,7 @@
         </div>
         <div class="border-2 border-black bg-yellow-500 w-full md:w-44">
             {#if !$connected}
-                <button on:click={walletConnect} class="block border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white w-full">Connect</button>
+                <button on:click={()=>connectModalOpen = true} class="block border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white w-full">Connect</button>
             {:else}
                 <button on:click={disconnectWagmi} class="block border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white w-full">{format.address($signerAddress)}</button>
             {/if}
@@ -92,6 +101,40 @@
     </div>
 </div>
 </div>
+
+{#if connectModalOpen}
+<div transition:fade={{ delay: 128, duration: 256 }} class="z-40 absolute top-0 left-0 insert-0 min-height-100vh bg-black bg-opacity-50 overflow-y-auto h-screen w-full flex justify-center items-center" id="withdrawModal">
+    <div class="relative opacity-inner w-1/4 text-white text-left border-4 border-black bg-green-500">
+        <div class="border-t-white border-t-4 border-l-4 border-l-white border-b-4 w-full border-r-4 border-zinc-400 p-6">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <!-- svelte-ignore a11y-interactive-supports-focus -->
+            <div on:click={()=>connectModalOpen=false} class="absolute top-0 right-0 p-2 mr-2 cursor-pointer text-2xl" role="button">x</div>
+            <h2 class="text-2xl mt-4 mb-8 text-center uppercase">Choose Connection</h2>
+            <div class="text-xs mb-1 flex justify-between">
+
+            </div>
+            <div class="space-y-1">
+                <div class="border-2 border-black bg-yellow-500">
+                    <button
+                        on:click={walletConnect}
+                        class="border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white w-full"
+                    >
+                        WalletConnect
+                    </button>
+                </div>
+                <div class="border-2 border-black bg-yellow-500">
+                    <button
+                        on:click={injectedConnector}
+                        class="border-b-4 border-r-4 border-zinc-500 border-t-white border-t-4 border-l-4 border-l-white p-4 text-xs hover:underline hover:bg-yellow-600 text-white w-full"
+                    >
+                        Injected Connector
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/if}
 
 <footer class="p-4 text-center mb-8">
     <div class="mx-auto">
