@@ -144,6 +144,22 @@ export let farms = [
     },
     {
         orderById: 3,
+        displayName: 'pLUSD/PLS',
+        lpAbbreviation: 'LP',
+        poolId: 18,
+        stakingToken: '0x0194073819EEe8497eA684c92826FFC00575D7c9',
+        liquidityLink: 'https://dex.dextop.pro/add/',
+        depositFee: 1,
+        withdrawFee: 1,
+        poolWeight: 1,
+        isActive: true,
+        compound: false,
+        zaps: false,
+        type: Types.Farm,
+        oracle: Oracles.DEXTOP
+    },
+    {
+        orderById: 3,
         displayName: 'KB/pDAI',
         lpAbbreviation: 'LP',
         poolId: 16,
