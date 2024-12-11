@@ -13,7 +13,7 @@
 
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
     {#each farms as farm}
-        {#if farm.decomissioned == true}
+        {#if farm.isActive == false}
         <FarmBox info={farm} />
         {/if}
     {/each}

@@ -40,7 +40,7 @@ export const price = (value) => {
     const format = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
-        minimumFractionDigits: 3
+        minimumFractionDigits: 5
     });
     return format.format(value);
 }
