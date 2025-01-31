@@ -208,6 +208,22 @@ export let farms = [
     },
     {
         orderById: 3,
+        displayName: 'LOVE/PLS',
+        lpAbbreviation: 'LP',
+        poolId: 21,
+        stakingToken: '0x5e54fF2194eDDc58128f39f066dCE5BC88B6C4eC',
+        liquidityLink: 'https://dex.dextop.pro/add/v2?currency=PLS&currency=0xb55ee890426341fe45ee6dc788d2d93d25b59063',
+        depositFee: 1,
+        withdrawFee: 1,
+        poolWeight: 1,
+        isActive: true,
+        compound: false,
+        zaps: false,
+        type: Types.Farm,
+        oracle: Oracles.DEXTOP
+    },
+    {
+        orderById: 3,
         displayName: 'TITS/KB',
         lpAbbreviation: 'LP',
         poolId: 20,
